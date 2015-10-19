@@ -19,5 +19,8 @@ RUN /bin/ln -s ../sites-available/dhcp.relay dhcp.relay && /bin/chown root:radiu
 # Return working directory to "/"
 WORKDIR /
 
+RUN sed -i -e 's/user = radiusd/user = root/'   /etc/raddb/radiusd.conf && \
+    sed -i -e 's/group = radiusd/group = root/' /etc/raddb/radiusd.conf
+
 # CMD /usr/sbin/radiusd -f -d /etc/raddb
 CMD bash

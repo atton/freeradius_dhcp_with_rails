@@ -9,12 +9,17 @@ Sample of DHCP server using FreeRADIUS with.
 
 * Rails
     * rake db:create db:migrate
-    * rake db:seed
     * rails server
-        * Please Add your IP Information
+        * Please Add your IP Information(e.g.: http://localhost:3000)
 
 * FreeRADIUS
-    * modify IP in docker/bind-sdb/named.conf
-        * Please set your postgres-server IP or docker host IP
     * $ docker build -t freeradius_with_rails/freeradius-dhcp docker/freeradius-dhcp
-    * $ docker run -itd --link postgres-server:postgres-server --name dhcp-server freeradius_with_rails/freeradius-dhcp
+    * $ docker run --privileged --link postgres-server:postgres-server --name dhcp-server -itd freeradius_with_rails/freeradius-dhcp
+    * Please modify /etc/raddb/sites-enabled/dhcp.relay for your environment.
+    * $ radiusd -X
+
+* Check DHCP client in docker
+    * $ docker run --privileged -it centos bash
+    * $ yum install -y dhclient
+    * Plase Register your Mac Address/IP Information using rails
+    * $ dhclient -d
