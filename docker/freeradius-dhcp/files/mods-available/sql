@@ -1,0 +1,37 @@
+sql {
+	driver = "rlm_sql_postgresql"
+	postgresql {
+		send_application_name = yes
+	}
+	dialect = "postgresql"
+	radius_db = "dbname=freeradius_dhcp_with_rails host=postgres-server user=postgres password=hogehoge"
+	server = "postgres-server"
+
+	authcheck_table = "radius_check_informations"
+	authreply_table = "radius_reply_informations"
+
+	delete_stale_sessions = yes
+
+	logfile = ${logdir}/sqllog.sql
+
+	pool {
+		start = 5
+
+		min = 4
+
+		max = ${thread[pool].max_servers}
+
+		spare = 3
+
+		uses = 0
+
+		lifetime = 0
+
+		idle_timeout = 60
+
+	}
+
+	client_table = "nas"
+
+	$INCLUDE ${modconfdir}/${.:name}/main/${dialect}/queries.conf
+}

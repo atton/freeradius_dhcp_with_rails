@@ -1,0 +1,45 @@
+server dhcp.eth0 {
+	listen {
+		type      = dhcp
+		ipaddr    = 0.0.0.0
+		port      = 67
+		interface = eth0
+		broadcast = yes
+	}
+	dhcp DHCP-Discover {
+		update reply {
+			DHCP-Message-Type = DHCP-Offer
+		}
+		update reply {
+			DHCP-Domain-Name-Server     = 0.0.0.0
+			DHCP-IP-Address-Lease-Time  = 7200
+			DHCP-DHCP-Server-Identifier = 0.0.0.0
+			DHCP-Router-Address         = 0.0.0.0
+			DHCP-Subnet-Mask            = 255.255.255.255
+		}
+		sql.authorize
+		ok
+	}
+
+	dhcp DHCP-Request {
+		update reply {
+			DHCP-Message-Type = DHCP-Ack
+		}
+
+		update reply {
+			DHCP-Domain-Name-Server     = 0.0.0.0
+			DHCP-IP-Address-Lease-Time  = 7200
+			DHCP-DHCP-Server-Identifier = 0.0.0.0
+			DHCP-Router-Address         = 0.0.0.0
+			DHCP-Subnet-Mask            = 255.255.255.255
+		}
+		sql.authorize
+		sql.post-auth
+		ok
+
+	}
+
+	dhcp {
+		reject
+	}
+}
