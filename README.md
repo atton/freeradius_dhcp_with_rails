@@ -14,7 +14,7 @@ Sample of DHCP server using FreeRADIUS with.
 
 * FreeRADIUS
     * $ docker build -t freeradius_with_rails/freeradius-dhcp docker/freeradius-dhcp
-    * $ docker run --privileged --link postgres-server:postgres-server --name dhcp-server -itd freeradius_with_rails/freeradius-dhcp
+    * $ docker run --privileged --link postgres-server:postgres-server --name dhcp-server -it freeradius_with_rails/freeradius-dhcp
     * Please modify /etc/raddb/sites-enabled/dhcp.relay for your environment.
     * $ radiusd -X
 
