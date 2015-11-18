@@ -5,6 +5,9 @@ server dhcp.eth0 {
 		port      = 67
 		interface = eth0
 		broadcast = yes
+		performance {
+			skip_duplicate_checks = yes
+		}
 	}
 	dhcp DHCP-Discover {
 		update reply {
