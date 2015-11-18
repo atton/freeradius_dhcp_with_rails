@@ -27,7 +27,7 @@ Japanese description is available here(http://attonblog.blogspot.jp/2015/10/free
 
 
 # Stress Test
-Japanese description is available here(http://attonblog.blogspot.jp/2015/11/config-for-dhcp-by-free-radius).
+Japanese description is available here(http://attonblog.blogspot.jp/2015/11/config-for-dhcp-by-free-radius.html).
 
 * Commands for stress test
     * $ docker build -t pg94 docker/postgres
